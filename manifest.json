@@ -1,0 +1,12 @@
+{
+  "name": "Boutique à Vous",
+  "short_name": "Boutique à Vous",
+  "description": "Votre boutique en ligne",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "lang": "fr"
+}
