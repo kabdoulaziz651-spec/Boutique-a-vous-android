@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>Boutique à Vous</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f6fa;color:#172033}
+header{background:#101827;color:white;padding:18px;text-align:center}
+.logo{font-size:25px;font-weight:bold;color:#e9bd69}
+header p{font-size:12px;margin-top:6px}
+nav{display:flex;justify-content:center;gap:20px;padding:14px;background:#202c40;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+.hero{background:linear-gradient(135deg,#101827,#344b69);color:white;text-align:center;padding:65px 18px}
+.hero h1{font-size:32px;margin-bottom:15px}
+.hero p{line-height:1.7}
+.btn{display:inline-block;background:#e9bd69;color:#101827;padding:14px 22px;margin-top:22px;text-decoration:none;border-radius:7px;font-weight:bold}
+section{padding:35px 15px}
+h2{text-align:center;margin-bottom:25px}
+.search{display:block;width:100%;max-width:500px;margin:0 auto 20px;padding:14px;border:1px solid #ddd;border-radius:8px;font-size:16px}
+.categories{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-bottom:25px}
+.categories button{background:white;border:1px solid #d6ad5c;padding:10px 14px;border-radius:20px;cursor:pointer}
+.categories button.active{background:#e9bd69}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.product{background:white;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px #0001;padding-bottom:12px}
+.product img{width:100%;height:145px;object-fit:cover}
+.product h3{font-size:15px;padding:10px 9px 5px}
+.product p{font-size:13px;color:#777;padding:0 9px}
+.price{color:#a77a25!important;font-weight:bold;font-size:15px!important;margin-top:8px}
+.order{display:block;background:#101827;color:white;text-align:center;margin:10px;padding:11px;border-radius:6px;text-decoration:none;font-size:13px}
+.about{background:white;text-align:center;line-height:1.8}
+.contact{text-align:center;background:#f5f6fa;line-height:2}
+footer{background:#101827;color:white;text-align:center;padding:25px;line-height:2;font-size:13px}
+footer a{color:#e9bd69}
+@media(min-width:700px){.products{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">BOUTIQUE À VOUS</div>
+<p>ÉLÉGANCE • QUALITÉ • SATISFACTION</p>
+</header>
+
+<nav>
+<a href="#accueil">Accueil</a>
+<a href="#boutique">Boutique</a>
+<a href="#apropos">À propos</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="hero" id="accueil">
+<h1>Bienvenue chez Boutique à Vous</h1>
+<p>Tout ce dont vous avez besoin, au même endroit.</p>
+<p>Mode, beauté, accessoires, maison et automobiles.</p>
+<a href="#boutique" class="btn">DÉCOUVRIR LA BOUTIQUE</a>
+</div>
+
+<section id="boutique">
+<h2>Nos catégories de produits</h2>
+<input class="search" id="search" placeholder="Rechercher un produit..." oninput="render()">
+
+<div class="categories">
+<button class="active" onclick="choose('Tous',this)">Tout</button>
+<button onclick="choose('Mode',this)">Vêtements</button>
+<button onclick="choose('Chaussures',this)">Chaussures</button>
+<button onclick="choose('Beauté',this)">Beauté</button>
+<button onclick="choose('Montres',this)">Montres</button>
+<button onclick="choose('Maison',this)">Maison</button>
+<button onclick="choose('Auto',this)">Autos</button>
+<button onclick="choose('Bien-être',this)">Bien-être</button>
+</div>
+
+<div class="products" id="products"></div>
+</section>
+
+<section class="about" id="apropos">
+<h2>À propos de nous</h2>
+<p>Boutique à Vous est votre boutique générale en ligne.</p>
+<p>Nous vous proposons une sélection de produits pour toute la famille.</p>
+<p>Notre priorité : votre satisfaction et un service de qualité.</p>
+</section>
+
+<section class="contact" id="contact">
+<h2>Contactez-nous</h2>
+<p>Une question ou une commande ?</p>
+<a class="btn" id="mainWhatsapp" href="#">ÉCRIVEZ-NOUS SUR WHATSAPP</a>
+</section>
+
+<footer>
+<p><strong>BOUTIQUE À VOUS</strong></p>
+<p>Votre satisfaction est notre priorité.</p>
+<p>© 2026 Boutique à Vous - Tous droits réservés.</p>
+</footer>
+
+<script>
+/* REMPLACEZ PAR VOTRE NUMERO WHATSAPP
+   Exemple : 221771234567 */
+const WHATSAPP = "221000000000";
+
+const articles = [
+["Vêtements élégants","Mode","https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500"],
+["Chaussures tendance","Chaussures","https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"],
+["Produits cosmétiques","Beauté","https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500"],
+["Montres de luxe","Montres","https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=500"],
+["Équipement maison","Maison","https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500"],
+["Automobiles","Auto","https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500"],
+["Produits bien-être","Bien-être","https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500"],
+["Accessoires de mode","Mode","https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500"]
+];
+
+let selected="Tous";
+
+function choose(category,button){
+selected=category;
+document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+render();
+}
+
+function render(){
+let search=document.getElementById("search").value.toLowerCase();
+let filtered=articles.filter(p=>
+(selected==="Tous"||p[1]===selected)&&
+p[0].toLowerCase().includes(search)
+);
+
+document.getElementById("products").innerHTML=filtered.map(p=>`
+<div class="product">
+<img src="${p[2]}" alt="${p[0]}" loading="lazy">
+<h3>${p[0]}</h3>
+<p>${p[1]}</p>
+<p class="price">Prix sur demande</p>
+<a class="order" target="_blank" rel="noopener" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Bonjour Boutique à Vous, je souhaite commander : "+p[0])}">Commander</a>
+</div>
+`).join("") || "<p>Aucun produit trouvé.</p>";
+}
+
+document.getElementById("mainWhatsapp").href="https://wa.me/"+WHATSAPP;
+render();
+</script>
+
+</body>
+</html>
